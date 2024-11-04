@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'rest_framework'
+    'rest_framework',
+    
+    # swaager doc 
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -131,9 +134,9 @@ REST_FRAMEWORK={
      "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    #  'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
 }
 
 
@@ -155,6 +158,18 @@ LOGGING = {
         'django.db.backends': {
             'handlers': ['console'],
             'level': 'DEBUG',
+        },
+    },
+}
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,  # Disable session-based authentication
+    "SECURITY_DEFINITIONS": {
+        "JWT": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization",
+            "description": "JWT Authorization header using the Bearer scheme. Example: 'Authorization: Bearer {token}'",
         },
     },
 }
